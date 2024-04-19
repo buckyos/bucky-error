@@ -1259,6 +1259,16 @@ impl From<(BuckyErrorCode, String)> for BuckyError {
     }
 }
 
+impl From<(BuckyErrorCode, String, Option<BuckyOriginError>)> for BuckyError {
+    fn from(value: (BuckyErrorCode, String, Option<BuckyOriginError>)) -> Self {
+        BuckyError {
+            code: value.0,
+            msg: value.1,
+            origin: value.2,
+        }
+    }
+}
+
 /*
 暂不支持
 impl From<&Box<dyn Error>> for BuckyError{
